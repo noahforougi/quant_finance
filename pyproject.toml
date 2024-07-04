@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "quant-finance"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.15"
+pandas = "^2.2.2"
+numpy = "<2.0.0"
+rpy2 = "^3.5.16"
+pyportfolioopt = "^1.5.5"
+notebook = "^7.2.1"
+ipykernel = "^6.29.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
