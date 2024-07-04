@@ -1,2 +1,2 @@
-gif_demo/
-presentation/
+*.pyc
+*pyc
