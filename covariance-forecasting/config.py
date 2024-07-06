@@ -1,3 +1,5 @@
+import pandas as pd
+
 INPUT_DIR = "/Users/noahforougi/research/time_series/data/replication_project/raw"
 OUTPUT_DIR = "/Users/noahforougi/research/time_series/data/replication_project/clean/"
 COLUMN_DICT = {
@@ -71,7 +73,7 @@ COLUMN_DICT = {
         ],
     ),
     # 6 Portfolios Formed on Size and Momentum
-    "6_Portfolios_ME_Prior_12_2_Daily.csv": (
+    "6_Portfolios_ME_Prior_12_2_Daily.CSV": (
         "sizemomentum",
         [
             "small_loprior",
@@ -83,7 +85,7 @@ COLUMN_DICT = {
         ],
     ),
     # 6 Portfolios Formed on Size and Short Term Reversal
-    "6_Portfolios_ME_Prior_1_0_Daily.csv": (
+    "6_Portfolios_ME_Prior_1_0_Daily.CSV": (
         "size_str",
         [
             "small_loprior",
@@ -95,7 +97,7 @@ COLUMN_DICT = {
         ],
     ),
     # 6 Portfolios Formed on Size and Long Term Reversal
-    "6_Portfolios_ME_Prior_60_13_Daily.csv": (
+    "6_Portfolios_ME_Prior_60_13_Daily.CSV": (
         "size_ltr",
         [
             "small_loprior",
@@ -107,3 +109,7 @@ COLUMN_DICT = {
         ],
     ),
 }
+
+BUCKET_NAME = "quant-finance-data"
+DATES = pd.date_range("19900101", "20240401", freq="MS")
+L = 120
