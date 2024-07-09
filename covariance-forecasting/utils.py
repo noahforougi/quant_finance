@@ -1,7 +1,7 @@
 from io import StringIO
 
 import boto3
-import config
+import configs as config
 import numpy as np
 import pandas as pd
 from rpy2.robjects import NULL

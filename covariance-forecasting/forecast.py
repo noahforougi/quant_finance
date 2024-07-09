@@ -1,4 +1,4 @@
-import config
+import configs as config
 import covariance
 import pandas as pd
 import utils
