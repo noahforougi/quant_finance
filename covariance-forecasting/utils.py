@@ -9,15 +9,13 @@ from rpy2.robjects import NULL
 
 def calc_msfe(realized, forecast):
     if forecast is NULL:
-        return np.nan  # Or return a specific value to indicate non-convergence
-
+        return np.nan
     forecast_array = np.array(forecast)
-    if forecast_array.dtype.kind in "iufc":  # Check for numeric types
+    if forecast_array.dtype.kind in "iufc":
         if np.isnan(forecast_array).all():
-            return np.nan  # Or return a specific value to indicate non-convergence
+            return np.nan
     else:
         return np.nan
-
     realized_array = np.array(realized, dtype=float)
     sfe = (forecast_array - realized_array) ** 2
     return np.triu(sfe).sum()
