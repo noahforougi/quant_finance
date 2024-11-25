@@ -1,4 +1,4 @@
-import config
+import configs as config
 import pandas as pd
 import utils
 

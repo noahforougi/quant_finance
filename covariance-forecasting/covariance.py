@@ -62,7 +62,7 @@ forecast_go_garch_cov <- function(data_window, days_in_month) {
     garch_spec <- gogarchspec(mean.model = 'constant',
                       variance.model = 'goGARCH',
                       distribution.model = 'mvnorm',
-                      umodel = uspec)    
+                      umodel = uspec)
     # Fit the GO-GARCH model
     fit <- gogarchfit(spec = garch_spec, data = data_window %>% select(-date))
 
@@ -81,32 +81,24 @@ forecast_go_garch_cov <- function(data_window, days_in_month) {
     return(gogarch_cov_matrix)
 }
 """
-
-
 # Execute the R code to define the functions in R environment
 r(r_code_dcc_garch)
 r(r_code_go_garch)
 
 
 def forecast_dcc_garch_cov(data_window, days_in_month):
-    # Convert the pandas DataFrame to R DataFrame
     r_data_window = pandas2ri.py2rpy(data_window.reset_index())
     dcc_cov_matrix = r["forecast_dcc_garch_cov"](r_data_window, days_in_month)
     if dcc_cov_matrix is None:
-        return np.full(
-            (data_window.shape[1], data_window.shape[1]), np.nan
-        )  # Return NaN matrix if not converged
+        return np.full((data_window.shape[1], data_window.shape[1]), np.nan)
     return np.array(dcc_cov_matrix)
 
 
 def forecast_go_garch_cov(data_window, days_in_month):
-    # Convert the pandas DataFrame to R DataFrame
     r_data_window = pandas2ri.py2rpy(data_window.reset_index())
     go_garch_cov_matrix = r["forecast_go_garch_cov"](r_data_window, days_in_month)
     if go_garch_cov_matrix is None:
-        return np.full(
-            (data_window.shape[1], data_window.shape[1]), np.nan
-        )  # Return NaN matrix if not converged
+        return np.full((data_window.shape[1], data_window.shape[1]), np.nan)
     return np.array(go_garch_cov_matrix)
 
 
