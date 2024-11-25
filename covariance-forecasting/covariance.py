@@ -83,66 +83,6 @@ forecast_go_garch_cov <- function(data_window, days_in_month) {
 """
 
 
-# r_code_go_garch = """
-# library(rmgarch)
-# library(dplyr)
-
-# forecast_go_garch_cov <- function(data_window, days_in_month) {
-#     spec <- ugarchspec(
-#         variance.model = list(model = "sGARCH", garchOrder = c(1, 1)),
-#         mean.model = list(armaOrder = c(0, 0))
-#     )
-
-#     # Create multispec for GO-GARCH
-#     num_columns <- ncol(data_window) - 1
-#     uspec <- multispec(replicate(num_columns, spec))
-#     # Specify the GO-GARCH model
-#     garch_spec <- gogarchspec(mean.model = "constant",
-#                       variance.model = "goGARCH",
-#                       distribution.model = "mvnorm",
-#                       umodel = uspec)
-#     # Fit the GO-GARCH model
-#     fit <- gogarchfit(spec = garch_spec, data = data_window %>% select(-date))
-#     # Forecast the GO-GARCH model
-#     n_ahead <- days_in_month
-#     gogarch_forecast <- gogarchforecast(fit, n.ahead = n_ahead)
-#     gogarch_cov_matrix <- rcov(gogarch_forecast)[[1]]
-#     gogarch_cov_matrix <- apply(gogarch_cov_matrix, c(1, 2), sum)
-
-#     return(gogarch_cov_matrix)
-# }
-# """
-
-# r_code_dcc_garch = """
-# library(rmgarch)
-# library(dplyr)
-
-# forecast_dcc_garch_cov <- function(data_window, days_in_month) {
-#     # Define the GARCH specification
-#     spec <- ugarchspec(
-#       variance.model = list(model = "sGARCH", garchOrder = c(1, 1)),
-#       mean.model = list(armaOrder = c(0, 0))
-#     )
-
-#     # Create the multivariate GARCH specification
-#     num_columns <- ncol(data_window) - 1
-#     uspec <- multispec(replicate(num_columns, spec))
-#     dcc_spec <- dccspec(uspec, dccOrder = c(1, 1), distribution = "mvnorm")
-
-#     # Fit the DCC-GARCH model
-#     dcc_fit <- dccfit(dcc_spec, data = data_window %>% select(-date))
-
-#     # Forecast the DCC-GARCH model for days_in_month days.
-#     n_ahead <- days_in_month
-#     dcc_forecast <- dccforecast(dcc_fit, n.ahead = n_ahead)
-#     dcc_cov_matrix <- rcov(dcc_forecast)[[1]]
-#     dcc_cov_matrix <- apply(dcc_cov_matrix, c(1, 2), sum)
-
-#     return(dcc_cov_matrix)
-# }
-# """
-
-
 # Execute the R code to define the functions in R environment
 r(r_code_dcc_garch)
 r(r_code_go_garch)
