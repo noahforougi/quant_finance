@@ -1,0 +1,14 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::345272551580:role/service-role/AmazonSageMaker-ExecutionRole-20240704T093724"
+            },
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::quant-finance-data/*"
+        }
+    ]
+}
+
